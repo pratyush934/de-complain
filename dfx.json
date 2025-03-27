@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "de-complain-backend": {
+      "candid": "src/de-complain-backend/de-complain-backend.did",
+      "package": "de-complain-backend",
+      "type": "rust"
+    },
+    "de-complain-frontend": {
+      "dependencies": [
+        "de-complain-backend"
+      ],
+      "source": [
+        "src/de-complain-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "de-complain-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

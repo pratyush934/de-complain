@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "src/de-complain-backend"
+]
+resolver = "2"
