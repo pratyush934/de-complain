@@ -8,6 +8,7 @@
     "start": "vite --port 3000",
     "prebuild": "dfx generate",
     "build": "tsc && vite build",
+    "dev" : "vite",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.{json,js,jsx,ts,tsx,css,scss}\"",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0"

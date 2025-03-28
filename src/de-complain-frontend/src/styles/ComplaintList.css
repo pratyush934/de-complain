@@ -1,0 +1,89 @@
+/* Complaint List Container */
+.complaints-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  /* Complaint Card */
+  .complaint-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .complaint-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Complaint Header */
+  .complaint-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Complaint Status */
+  .complaint-status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .status-pending {
+    background: #ffcc00;
+    color: black;
+  }
+  
+  .status-resolved {
+    background: #28a745;
+    color: white;
+  }
+  
+  .status-rejected {
+    background: #dc3545;
+    color: white;
+  }
+  
+  /* Complaint Content */
+  .complaint-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  /* Action Buttons */
+  .complaint-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .complaint-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .btn-resolve {
+    background: #28a745;
+    color: white;
+  }
+  
+  .btn-reject {
+    background: #dc3545;
+    color: white;
+  }
+  

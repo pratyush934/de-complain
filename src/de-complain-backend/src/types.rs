@@ -1,6 +1,6 @@
-use serde::{Deserialize, Serialize};
+use candid::Nat;
 use candid::{CandidType, Principal};
-use std::collections::HashMap;
+use serde::{Deserialize, Serialize};
 
 #[derive(CandidType, Serialize, Deserialize, Clone, Debug)]
 pub struct Complaint {
@@ -9,8 +9,8 @@ pub struct Complaint {
     pub description: String,
     pub category: String,
     pub user: Principal,
-    pub status: String, // "pending", "in-progress", "resolved"
-    pub upvotes: u32,
+    pub status: String,
+    pub upvotes: Nat, // ✅ Ensure it's `Nat`, not `u64`
     pub comments: Vec<Comment>,
 }
 

@@ -1,0 +1,32 @@
+.accordion {
+  max-width: 600px;
+  margin: 30px auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  background: #2c3e50;
+  color: white;
+  font-size: 1.2rem;
+  padding: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.accordion-content {
+  padding: 15px;
+  background: #f9f9f9;
+  display: none;
+}
+
+.accordion-item.active .accordion-content {
+  display: block;
+}

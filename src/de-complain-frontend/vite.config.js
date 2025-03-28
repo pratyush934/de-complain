@@ -1,63 +1,113 @@
-import { fileURLToPath, URL } from "url";
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
-import environment from "vite-plugin-environment";
 import dotenv from "dotenv";
 import path from "path";
+import { defineConfig, loadEnv } from "vite";
+import environment from "vite-plugin-environment";
 
+// Load environment variables
 dotenv.config({ path: "../../.env" });
 
-export default defineConfig({
-  build: {
-    emptyOutDir: true,
-    commonjsOptions: {
-      transformMixedEsModules: true,
+export default defineConfig(({ mode }) => {
+  // Load env variables
+  const env = loadEnv(mode, process.cwd(), "");
+
+  return {
+    // Define global constants
+    define: {
+      "process.env.NODE_ENV": JSON.stringify(mode),
+      "process.env": JSON.stringify(env),
     },
-  },
-  optimizeDeps: {
-    esbuildOptions: {
-      define: {
-        global: "globalThis",
+
+    // Build configuration
+    build: {
+      emptyOutDir: true,
+      commonjsOptions: {
+        transformMixedEsModules: true,
+      },
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes("node_modules")) {
+              return "vendor";
+            }
+          },
+        },
       },
     },
-  },
-  server: {
-    proxy: {
-      "/api": {
-        target: "http://127.0.0.1:4943",
-        changeOrigin: true,
+
+    // Dependency optimization
+    optimizeDeps: {
+      esbuildOptions: {
+        define: {
+          global: "globalThis",
+        },
       },
     },
-  },
-  plugins: [
-    react(),
-    environment("all", { prefix: "CANISTER_" }),
-    environment("all", { prefix: "DFX_" }),
-    {
-      name: "did-resolver",
-      resolveId(source) {
-        if (source.endsWith(".did")) {
-          return source;
-        }
+
+    // Development server configuration
+    server: {
+      port: 3000,
+      open: true,
+      proxy: {
+        "/api": {
+          target: "http://127.0.0.1:4943", // ✅ Ensure it points to your backend
+          changeOrigin: true,
+          secure: false,
+        },
       },
-      load(id) {
-        if (id.endsWith(".did")) {
-          // Read the .did file contents
-          const fs = require("fs");
-          const didContent = fs.readFileSync(id, "utf-8");
-          return `export default \`${didContent}\`;`;
-        }
+      headers: {
+        "Content-Security-Policy":
+          "default-src 'self' 'unsafe-inline' http://localhost:* http://127.0.0.1:* https://icp0.io https://*.icp0.io https://icp-api.io; script-src 'self' 'unsafe-inline' 'unsafe-eval';",
       },
     },
-  ],
-  resolve: {
-    alias: [
+
+    // Plugins configuration
+    plugins: [
+      react(),
+      environment("all", { prefix: "CANISTER_" }),
+      environment("all", { prefix: "DFX_" }),
       {
-        find: "declarations",
-        replacement: path.resolve(__dirname, "../declarations"),
-        "@": "/src",
+        name: "did-resolver",
+        resolveId(source) {
+          if (source.endsWith(".did")) {
+            return source;
+          }
+        },
+        load(id) {
+          if (id.endsWith(".did")) {
+            try {
+              const fs = require("fs");
+              const didContent = fs.readFileSync(id, "utf-8");
+              return `export default \`${didContent}\`;`;
+            } catch (error) {
+              console.error(`Failed to load .did file: ${id}`, error);
+              return null;
+            }
+          }
+        },
       },
     ],
-    extensions: [".js", ".json", ".did"],
-  },
+
+    // Resolve configuration
+    resolve: {
+      alias: [
+        {
+          find: "@",
+          replacement: path.resolve(__dirname, "src"),
+        },
+        {
+          find: "declarations",
+          replacement: path.resolve(__dirname, "../declarations"),
+        },
+      ],
+      extensions: [".js", ".jsx", ".json", ".did"],
+    },
+
+    // Performance optimization
+    performance: {
+      maxEntrypointSize: 1024000, // 1MB
+      maxAssetSize: 1024000, // 1MB
+      hints: "warning",
+    },
+  };
 });

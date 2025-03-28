@@ -1,0 +1,64 @@
+/* Complaint Form Container */
+.complaint-form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  /* Form */
+  .complaint-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* Input Fields */
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  /* Button */
+  button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  /* Submit Button */
+  button[type="submit"] {
+    background: #28a745;
+    color: white;
+  }
+  
+  button[type="submit"]:hover {
+    background: #218838;
+  }
+  
+  /* Login Button */
+  .login-btn {
+    background: #007bff;
+    color: white;
+  }
+  
+  .login-btn:hover {
+    background: #0056b3;
+  }
+  

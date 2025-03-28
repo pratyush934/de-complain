@@ -3,15 +3,14 @@
     "de-complain-backend": {
       "candid": "src/de-complain-backend/de-complain-backend.did",
       "package": "de-complain-backend",
-      "type": "rust"
+      "type": "rust",
+      "frontend": {
+        "csp": "default-src 'self' http://localhost:* http://127.0.0.1:* https://icp0.io https://*.icp0.io https://icp-api.io; connect-src 'self' http://localhost:* http://127.0.0.1:* https://icp0.io https://*.icp0.io https://icp-api.io;"
+      }
     },
     "de-complain-frontend": {
-      "dependencies": [
-        "de-complain-backend"
-      ],
-      "source": [
-        "src/de-complain-frontend/dist"
-      ],
+      "dependencies": ["de-complain-backend"],
+      "source": ["src/de-complain-frontend/dist"],
       "type": "assets",
       "workspace": "de-complain-frontend"
     }

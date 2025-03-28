@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { actor } from "../util/icpActor"; // Import backend connection
+import DeComplainActor from "@/util/icpActor.js";
 
 export default function CommentSection({ complaint }) {
   const [comments, setComments] = useState(complaint.comments || []);
@@ -9,8 +9,8 @@ export default function CommentSection({ complaint }) {
     e.preventDefault();
     if (!newComment.trim()) return;
 
-    await actor.add_comment(complaint.id, newComment);
-    setComments([...comments, { user: "You", text: newComment }]); 
+    await DeComplainActor.add_comment(complaint.id, newComment);
+    setComments([...comments, { user: "You", text: newComment }]);
     setNewComment("");
   };
 
@@ -31,4 +31,3 @@ export default function CommentSection({ complaint }) {
     </div>
   );
 }
-

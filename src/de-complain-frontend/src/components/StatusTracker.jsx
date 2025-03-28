@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { actor } from "../util/icpActor";
+import DeComplainActor from "@/util/icpActor.js";
 
 export default function StatusTracker({ complaint }) {
   const [status, setStatus] = useState(complaint.status);
@@ -7,7 +7,7 @@ export default function StatusTracker({ complaint }) {
   const handleChange = async (e) => {
     const newStatus = e.target.value;
     setStatus(newStatus);
-    await actor.update_complaint_status(complaint.id, newStatus);
+    await DeComplainActor.update_complaint_status(complaint.id, newStatus);
   };
 
   return (

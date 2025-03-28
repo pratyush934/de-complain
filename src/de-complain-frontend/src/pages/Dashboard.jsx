@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import ComplaintForm from "../components/ComplaintForm";
-import ComplaintList from "../components/ComplaintList";
-import FilterSort from "../components/FilterSort";
+import ComplaintForm from "../components/ComplaintForm.jsx";
+import ComplaintList from "../components/ComplaintList.jsx";
+import FilterSort from "../components/FilterSort.jsx";
 
 export default function Dashboard() {
   const [complaints, setComplaints] = useState([]);
@@ -17,7 +17,7 @@ export default function Dashboard() {
     <div className="dashboard">
       <h2>Dashboard</h2>
       <ComplaintForm onSubmit={handleNewComplaint} />
-      <FilterSort onFilter={setFilter} />
+      {/* <FilterSort onFilter={setFilter} /> */}
       <ComplaintList complaints={filteredComplaints} />
     </div>
   );
