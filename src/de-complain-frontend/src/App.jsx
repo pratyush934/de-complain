@@ -1,31 +1,48 @@
-import { useState } from 'react';
-import { de_complain_backend } from 'declarations/de-complain-backend';
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Home from "./pages/Home.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import ComplaintDetails from "./pages/ComplaintDetails.jsx";
+import Authentication from "./components/Authentication.jsx";
+import "./styles/global.css";
 
-function App() {
-  const [greeting, setGreeting] = useState('');
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    de_complain_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
+export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <Router>
+      <div className="app-container">
+        {/* Navigation Bar */}
+        <nav className="navbar">
+          <h2 className="logo">De-Complaint</h2>
+          <ul className="nav-links">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+            {isAuthenticated ? (
+              <li>
+                <button className="auth-btn">Logout</button>
+              </li>
+            ) : (
+              <li>
+                <Authentication onLogin={setIsAuthenticated} />
+              </li>
+            )}
+          </ul>
+        </nav>
+
+        {/* Main Content */}
+        <div className="content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/complaint/:id" element={<ComplaintDetails />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
-
-export default App;

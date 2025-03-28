@@ -1,3 +1,20 @@
 service : {
-    "greet": (text) -> (text) query;
+    submit_complaint: (text, text, text) -> (text);
+    get_complaints: () -> (vec record {
+        id: text;
+        title: text;
+        description: text;
+        category: text;
+        user: principal;
+        status: text;
+        upvotes: nat;
+        comments: vec record { 
+            user: principal; 
+            text: text; 
+        }
+    }) query;
+
+    upvote_complaint: (text) -> () oneway;
+    add_comment: (text, text) -> () oneway;
+    update_complaint_status: (text, text) -> () oneway;
 }

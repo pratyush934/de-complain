@@ -1,0 +1,162 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  padding: 8px;
+  background: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select {
+  display: block;
+  margin: 5px 0;
+  padding: 8px;
+  width: 100%;
+}
+
+/* App Container */
+.app-container {
+  text-align: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 15px;
+  color: white;
+}
+
+.logo {
+  font-size: 1.5rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a,
+.auth-btn {
+  text-decoration: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background-color: #555;
+  cursor: pointer;
+}
+
+.auth-btn {
+  border: none;
+}
+
+.nav-links a:hover,
+.auth-btn:hover {
+  background-color: #777;
+}
+
+/* Home Page */
+.home {
+  margin-top: 50px;
+}
+
+.home h1 {
+  font-size: 2rem;
+}
+
+.home p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Dashboard */
+.dashboard {
+  padding: 20px;
+}
+
+.complaint-form {
+  max-width: 400px;
+  margin: auto;
+}
+
+.complaint-form input,
+.complaint-form textarea,
+.complaint-form select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
+.complaint-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+}
+
+.complaint-form button:hover {
+  background-color: #218838;
+}
+
+/* Complaint List */
+.complaint-list {
+  margin-top: 20px;
+}
+
+.complaint-item {
+  background-color: white;
+  padding: 15px;
+  margin: 10px auto;
+  max-width: 500px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.complaint-item h3 {
+  margin-bottom: 5px;
+}
+
+/* Complaint Details */
+.complaint-details {
+  margin-top: 20px;
+  padding: 20px;
+}
